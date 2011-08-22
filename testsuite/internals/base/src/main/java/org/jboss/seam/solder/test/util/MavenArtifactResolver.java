@@ -17,10 +17,14 @@
 package org.jboss.seam.solder.test.util;
 
 import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.JarFile;
+import java.util.jar.Manifest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
 
 /**
  * Resolves a maven artifact present on the test classpath.
@@ -56,7 +60,7 @@ public class MavenArtifactResolver {
     private final char fileSeparator;
     private final String groupId;
     private final String artifactId;
-    private final String classPath;
+    private String classPath;
 
     MavenArtifactResolver(String groupId, String artifactId, String classPath, char pathSeparator, char fileSeparator) {
         this.groupId = groupId;
@@ -64,6 +68,28 @@ public class MavenArtifactResolver {
         this.classPath = classPath;
         this.classPathSeparatorRegex = "[^" + pathSeparator + "]*";
         this.fileSeparator = fileSeparator;
+        
+        // The forking surefire produces a single surefirebooter.jar with the real classpath "hidden" in its manifest        
+        /*try {            
+            JarFile jarFile = new JarFile(classPath);
+            Manifest manifest = new Manifest(jarFile.getInputStream(new ZipEntry("META-INF/MANIFEST.MF")));
+            this.classPath = manifest.getMainAttributes().getValue("Class-Path"); 
+                
+            StringBuilder cpBuilder = new StringBuilder();
+            for (String fileUrl : this.classPath.split(" ")) {
+                File file = new File(new URI(fileUrl));
+                    
+                if (cpBuilder.length() > 0) {
+                    cpBuilder.append(pathSeparator);
+                }
+                cpBuilder.append(file.getAbsolutePath());
+            }
+               
+            this.classPath = cpBuilder.toString();
+            
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Unable to read Class-Path entry from  " + classPath + "/META-INF/MANIFEST.MF, " + e.getMessage());
+        }*/
     }
 
     String resolve() {
