@@ -16,9 +16,6 @@
 
    <modules>
       <module>common</module>
-      <!-- <module>api</module> -->
-      <module>internals</module>
-      <!-- <module>smoke</module> -->
    </modules>
 
    <dependencyManagement>
@@ -31,50 +28,27 @@
             <scope>test</scope>
          </dependency>
          
-         <dependency>
-            <groupId>org.jboss.seam.solder</groupId>
-            <artifactId>seam-solder-testsuite-integration-internals-base</artifactId>
-            <version>${project.version}</version>
-         </dependency>
- 
       </dependencies>
    </dependencyManagement>
 
    <profiles>
       <profile>
          <id>allTests</id>
-         <activation>
+          <activation>
+            <activeByDefault>true</activeByDefault>
           <property>
             <name>allTests</name>
           </property>
          </activation>
-<!-- Re-enable when we have tests for these modules
          <modules>
-             <module>stress</module>
-             <module>benchmark</module>
-             <module>clustering</module>
+            <module>common</module>
+            <module>containers</module>
+            <module>containers/weld-ee-embedded</module>
+            <module>containers/glassfish</module>  <!-- works, but you have to have a GLASSFISH_HOME set up -->
+            <module>containers/jbossas</module>
          </modules>
--->
       </profile>
-      <profile>
-         <id>code-coverage</id>
-         <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.codehaus.mojo</groupId>
-                  <artifactId>emma-maven-plugin</artifactId>
-               </plugin>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-surefire-plugin</artifactId>
-               </plugin>
-               <plugin>
-                  <groupId>org.sonatype.maven.plugin</groupId>
-                  <artifactId>emma4it-maven-plugin</artifactId>
-               </plugin>
-            </plugins>
-         </build>
-      </profile>
+
    </profiles>
 
 </project>
