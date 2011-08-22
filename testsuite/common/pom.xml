@@ -31,7 +31,9 @@
       <dependency>
          <groupId>org.jboss.shrinkwrap.resolver</groupId>
          <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-         <scope>provided</scope>
+         <scope>compile</scope>
+         <!--scope>provided</scope-->
+
       </dependency>
    </dependencies>
 </project>

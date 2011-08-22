@@ -38,7 +38,7 @@ public class MavenArtifactResolver {
         }
         String path = new MavenArtifactResolver(groupId.trim(), artifactId.trim(), System.getProperty("java.class.path"), File.pathSeparatorChar, File.separatorChar).resolve();
         if (path == null) {
-            throw new IllegalArgumentException("Cannot locate artifact for " + groupId + ":" + artifactId);
+            throw new IllegalArgumentException("Cannot locate artifact for " + groupId + ":" + artifactId + "on classpath: " + System.getProperty("java.class.path") );
         }
         return new File(path);
     }
@@ -107,8 +107,14 @@ public class MavenArtifactResolver {
     }
 
     String scanForArtifact(List<String> paths) {
+        
+        System.err.println("Scan for Artifact");
+        
         Pattern pattern = Pattern.compile(artifactId + "-[\\d+\\.]+(?:[\\-\\.]\\p{Alnum}*)?.jar$");
         for (String path : paths) {
+            
+            System.err.println("Scanning " + path);
+            
             if (pattern.matcher(path).find()) {
                 return path;
             }
