@@ -29,7 +29,9 @@ public class Deployments {
                         MavenArtifactResolver.resolve("org.jboss.seam.solder", "seam-solder-api"),
                         MavenArtifactResolver.resolve("org.jboss.seam.solder", "seam-solder"),
                         MavenArtifactResolver.resolve("org.jboss.seam.solder", "seam-solder-logging"))
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsWebInfResource("WEB-INF/jetty-web.xml", "web.xml")
+                .addAsWebInfResource("WEB-INF/jetty-env.xml", "jetty-env.xml");
     }
 
     public static Class<? extends DeployableContainer> targetContainerAdapterClass() {
