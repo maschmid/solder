@@ -17,6 +17,7 @@
    <modules>
       <module>base</module>
       <module>jbossas</module>
-      <!--module>weld-ee-embedded</module-->
+      <module>weld-ee-embedded</module>
+      <module>jetty</module>
    </modules>
 </project>

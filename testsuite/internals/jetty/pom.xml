@@ -10,8 +10,8 @@
       <relativePath>../pom.xml</relativePath>
    </parent>
 
-   <artifactId>seam-solder-testsuite-integration-internals-jbossas</artifactId>
-   <name>Seam Solder Test Suite: Internals Integration Tests for JBoss AS</name>
+   <artifactId>seam-solder-testsuite-integration-internals-jetty7</artifactId>
+   <name>Seam Solder Test Suite: Internals Integration Tests for Jetty 7</name>
    <packaging>jar</packaging>
 
    <dependencies>
@@ -58,7 +58,14 @@
          <artifactId>el-impl</artifactId>
          <scope>compile</scope>
       </dependency>      
+
+      <dependency>
+         <groupId>org.glassfish.web</groupId>
+         <artifactId>el-impl</artifactId>
+         <scope>compile</scope>
+      </dependency>      
       
+     
       <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
@@ -86,6 +93,20 @@
                      </sources>
                   </configuration>
                </execution>
+               <execution>
+                  <id>generate-resources</id>
+                  <phase>generate-resources</phase>
+                  <goals>
+                    <goal>add-test-resource</goal>
+                  </goals>
+                  <configuration>
+                     <resources>
+                        <resource>
+                            <directory>../base/src/main/resources</directory>
+                        </resource>
+                     </resources>
+                  </configuration>
+               </execution>
             </executions>
          </plugin>
       
@@ -95,44 +116,19 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
                <skip>true</skip>
-               
             </configuration>
          </plugin>
-         
-         <!--plugin>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-               <execution>
-                  <id>unpack-base-tests</id>
-                  <phase>process-test-classes</phase>
-                  <goals>
-                     <goal>unpack</goal>
-                  </goals>
-                  <configuration>
-                     <artifactItems>
-                        <artifactItem>
-                           <groupId>org.jboss.seam.solder</groupId>
-                           <artifactId>seam-solder-testsuite-integration-internals-base</artifactId>
-                           <version>${project.version}</version>
-                           <type>jar</type>
-                           <outputDirectory>${project.build.directory}/test-classes/</outputDirectory>
-                        </artifactItem>
-                     </artifactItems>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin-->
       </plugins>
    </build>
 
    <profiles>
       <profile>
-         <id>jbossas-managed-7</id>
+         <id>arquillian-jetty-embedded-7</id>
          <activation>
             <activeByDefault>true</activeByDefault>
             <property>
                <name>arquillian</name>
-               <value>jbossas-managed-7</value>
+               <value>arquillian-jetty-embedded-7</value>
             </property>
          </activation>
          
@@ -140,7 +136,7 @@
          
             <dependency>
                <groupId>org.jboss.seam.test</groupId>
-               <artifactId>jbossas-managed-7</artifactId>
+               <artifactId>jetty-embedded-7</artifactId>
                <type>pom</type>
                <scope>test</scope>
             </dependency>
@@ -149,33 +145,6 @@
          
          <build>
             <plugins>
-               <!-- Get AS and put into "target" -->
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-dependency-plugin</artifactId>
-                  <executions>
-                     <execution>
-                        <id>unpack-as7</id>
-                        <phase>process-test-classes</phase> <!-- So run before testing -->
-                        <goals>
-                           <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                           <artifactItems>
-                              <artifactItem>
-                                 <groupId>org.jboss.as</groupId>
-                                 <artifactId>jboss-as-dist</artifactId>
-                                 <version>${jbossas.7.version}</version>
-                                 <type>zip</type>
-                                 <overWrite>false</overWrite>
-                                 <outputDirectory>${project.build.directory}</outputDirectory>
-                              </artifactItem>
-                           </artifactItems>
-                        </configuration>
-                     </execution>
-                  </executions>
-               </plugin>
-               
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-surefire-plugin</artifactId>
