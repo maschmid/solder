@@ -40,26 +40,6 @@
                     <configuration>
                         <skip>true</skip>
                     </configuration>
-
-                    <executions>
-                        <execution>
-                            <id>surefire-it</id>
-                            <phase>integration-test</phase>
-                            <goals>
-                                <goal>test</goal>
-                            </goals>
-                            <configuration>
-                                <skip>false</skip>
-                                <redirectTestOutputToFile>true</redirectTestOutputToFile>
-                                <trimStackTrace>false</trimStackTrace>
-                                <printSummary>true</printSummary>
-                                <excludes>
-                                    <exclusion>org/jboss/seam/solder/test/bean/generic/alternative/GenericBeanAlternativeTest.java</exclusion>
-                                    <exclusion>org/jboss/seam/solder/test/messages/TypedMessageBundleInjectionTest.java</exclusion>
-                                </excludes>
-                            </configuration>
-                        </execution>
-                    </executions>
                 </plugin>
    
                 <!-- one of the options for copying the common classes...  -->
