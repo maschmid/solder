@@ -39,7 +39,6 @@
         <profile>
             <id>weld-ee-embedded-1.1</id>
             <activation>
-                <!-- activeByDefault>true</activeByDefault-->
                 <property>
                     <name>weld-ee-embedded-1.1</name>
                 </property>
