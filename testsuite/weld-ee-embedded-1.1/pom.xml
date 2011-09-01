@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>seam-solder-testsuite-containers-weld-ee-embedded</artifactId>
+    <artifactId>seam-solder-testsuite-weld-ee-embedded-1.1</artifactId>
     <name>Seam Solder Test Suite: Integration Tests for Weld EE Embedded</name>
     <packaging>jar</packaging>
 

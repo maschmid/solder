@@ -12,7 +12,7 @@
     <artifactId>seam-solder-testsuite</artifactId>
 
     <packaging>pom</packaging>
-    <name>Seam Solder Test Suite: Aggregator</name>
+    <name>Seam Solder Test Suite: Aggregator &amp; Parent</name>
 
     <modules>
         <module>common</module>

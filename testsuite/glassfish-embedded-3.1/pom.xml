@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>seam-solder-testsuite-containers-glassfish</artifactId>
+    <artifactId>seam-solder-testsuite-glassfish-embedded-3.1</artifactId>
     <name>Seam Solder Test Suite: Integration Tests for GlassFish</name>
     <packaging>jar</packaging>
 

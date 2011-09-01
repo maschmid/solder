@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>seam-solder-testsuite-containers-jbossas</artifactId>
+    <artifactId>seam-solder-testsuite-jbossas-managed-7</artifactId>
     <name>Seam Solder Test Suite: Integration Tests for JBoss AS</name>
     <packaging>jar</packaging>
 
