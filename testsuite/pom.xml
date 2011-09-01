@@ -16,57 +16,10 @@
 
     <modules>
         <module>common</module>
+        <module>weld-ee-embedded-1.1</module>
+        <module>glassfish-embedded-3.1</module>
+        <module>jbossas-managed-7</module>
     </modules>
-
-    <profiles>
-        <profile>
-            <id>allTests</id>
-            <activation>
-                <property>
-                    <name>allTests</name>
-                </property>
-            </activation>
-            <modules>
-                <module>weld-ee-embedded-1.1</module>
-                <module>glassfish-embedded-3.1</module>
-                <module>jbossas-managed-7</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>weld-ee-embedded-1.1</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-                <property>
-                    <name>weld-ee-embedded-1.1</name>
-                </property>
-            </activation>
-            <modules>
-                <module>weld-ee-embedded-1.1</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>jbossas-managed-7</id>
-            <activation>
-                <property>
-                    <name>jbossas-managed-7</name>
-                </property>
-            </activation>
-            <modules>
-                <module>jbossas-managed-7</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>glassfish-embedded-3.1</id>
-            <activation>
-                <property>
-                    <name>glassfish-embedded-3.1</name>
-                </property>
-            </activation>
-            <modules>
-                <module>glassfish-embedded-3.1</module>
-            </modules>
-        </profile>
-    </profiles>
 
     <!-- This module is a parent for the container-specific modules, the following configuration handles dependencies and copying of the "common" module. -->
     <dependencies>
