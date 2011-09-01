@@ -1,54 +1,158 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-   <parent>
-      <groupId>org.jboss.seam.solder</groupId>
-      <artifactId>seam-solder-parent</artifactId>
-      <version>3.1.0-SNAPSHOT</version>
-      <relativePath>../pom.xml</relativePath>
-   </parent>
+    <parent>
+        <groupId>org.jboss.seam.solder</groupId>
+        <artifactId>seam-solder-parent</artifactId>
+        <version>3.1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
 
-   <artifactId>seam-solder-testsuite</artifactId>
+    <artifactId>seam-solder-testsuite</artifactId>
 
-   <packaging>pom</packaging>
-   <name>Seam Solder Test Suite: Aggregator</name>
+    <packaging>pom</packaging>
+    <name>Seam Solder Test Suite: Aggregator</name>
 
-   <modules>
-      <module>common</module>
-   </modules>
+    <modules>
+        <module>common</module>
+    </modules>
 
-   <dependencyManagement>
-      <dependencies>
-      
+    <profiles>
+        <profile>
+            <id>allTests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>allTests</name>
+                </property>
+            </activation>
+            <modules>
+                <module>common</module>
+                <module>weld-ee-embedded-1.1</module>
+                <module>glassfish-embedded-3.1</module>  <!-- works, but you have to have a GLASSFISH_HOME set up -->
+                <module>jbossas-managed-7</module>
+            </modules>
+        </profile>
+    </profiles>
+
+    <!-- This module is a parent for the container-specific modules, the following configuration handles dependencies and copying of the "common" module. -->
+    <dependencies>
          <dependency>
             <groupId>org.jboss.seam.solder</groupId>
             <artifactId>seam-solder-testsuite-common</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
          </dependency>
-         
-      </dependencies>
-   </dependencyManagement>
+    </dependencies>
 
-   <profiles>
-      <profile>
-         <id>allTests</id>
-          <activation>
-            <activeByDefault>true</activeByDefault>
-          <property>
-            <name>allTests</name>
-          </property>
-         </activation>
-         <modules>
-            <module>common</module>
-            <module>containers</module>
-            <module>containers/weld-ee-embedded</module>
-            <module>containers/glassfish</module>  <!-- works, but you have to have a GLASSFISH_HOME set up -->
-            <module>containers/jbossas</module>
-         </modules>
-      </profile>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
 
-   </profiles>
+                    <executions>
+                        <execution>
+                            <id>surefire-it</id>
+                            <phase>integration-test</phase>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                            <configuration>
+                                <skip>false</skip>
+                                <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                                <trimStackTrace>false</trimStackTrace>
+                                <printSummary>true</printSummary>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+   
+                <!-- one of the options for copying the common classes...  -->
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>unpack-base-tests</id>
+                            <phase>generate-test-sources</phase>
+                            <goals>
+                                <goal>unpack-dependencies</goal>
+                            </goals>
+                            <configuration>
+                                <includeArtifactIds>
+                                    seam-solder-testsuite-common
+                                </includeArtifactIds>
+                                <outputDirectory>${project.build.directory}/test-classes/</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            <!-- plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>../../common/src/main/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-test-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>../../common/src/main/resources</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin -->
+
+            
+            <!-- plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-base-tests</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.jboss.seam.solder</groupId>
+                                    <artifactId>seam-solder-testsuite-common</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <outputDirectory>${project.build.directory}/test-classes/</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin -->
+
+            </plugins>
+        </pluginManagement>
+    </build>
+
 
 </project>
