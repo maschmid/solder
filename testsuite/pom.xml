@@ -66,6 +66,54 @@
                 <module>glassfish-embedded-3.1</module>
             </modules>
         </profile>
+
+
+        <profile>
+            <id>jacoco</id>
+            <dependencies>
+                <!-- These shall be moved to seam parent -->
+
+                <dependency>
+                    <groupId>org.jboss.arquillian.extension</groupId>
+                    <artifactId>arquillian-jacoco</artifactId>
+                    <scope>test</scope>
+                    <version>1.0.0.Alpha1</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>org.jacoco.core</artifactId>
+                    <version>0.5.3.201107060350</version>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>build-helper-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-resource</goal>
+                                </goals>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>../../../impl/target/classes</directory>
+                                            <targetPath>.</targetPath>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+
     </profiles>
 
     <!-- This module is a parent for the container-specific modules, the following configuration handles dependencies and copying of the "common" module. -->
