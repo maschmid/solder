@@ -20,6 +20,19 @@
 
     <profiles>
         <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>release</name>
+                </property>
+            </activation>
+            <modules>
+                <module>weld-ee-embedded-1.1</module>
+                <module>glassfish-embedded-3.1</module>
+                <module>jbossas-managed-7</module>
+            </modules>
+        </profile>
+        <profile>
             <id>allTests</id>
             <activation>
                 <property>
