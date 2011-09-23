@@ -14,6 +14,10 @@
     <name>Solder Test Suite</name>
     <packaging>jar</packaging>
 
+    <properties>
+        <jbossas.7.version>7.0.1.Final</jbossas.7.version>
+    </properties>
+    
     <dependencies>
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
@@ -51,6 +55,7 @@
                     <systemProperties>
                         <arquillian.launch>${arquillian}</arquillian.launch>
                         <arquillian>${arquillian}</arquillian>
+                        <jbossas.7.version>${jbossas.7.version}</jbossas.7.version>
                     </systemProperties>
                 </configuration>
 
@@ -98,7 +103,6 @@
                     <artifactId>el-impl</artifactId>
                     <scope>test</scope>
                 </dependency>
-
             </dependencies>
 
             <build>
@@ -134,6 +138,36 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack-as7</id>
+                                <phase>generate-test-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.jboss.as</groupId>
+                                            <artifactId>jboss-as-dist</artifactId>
+                                            <version>${jbossas.7.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile> 
 
         <profile>

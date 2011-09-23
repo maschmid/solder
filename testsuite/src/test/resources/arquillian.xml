@@ -32,6 +32,7 @@
         </protocol>
         <configuration>
             <property name="javaVmArguments">-client -noverify -XX:+UseFastAccessorMethods -Xms64m -Xmx1024m -XX:MaxPermSize=512m</property>
+            <property name="jbossHome">target/jboss-as-${jbossas.7.version}</property>
        </configuration>
     </container>
 
