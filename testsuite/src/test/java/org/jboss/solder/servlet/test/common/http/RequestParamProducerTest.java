@@ -50,16 +50,13 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 /**
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
  */
-@RunWith(Arquillian.class)
+//@RunWith(Arquillian.class)
 // TODO split up into individual tests for each param type
 public class RequestParamProducerTest {
-    private static final String IMPLICIT_PARAM = "implicit";
+  /*  private static final String IMPLICIT_PARAM = "implicit";
     private static final String EXPLICIT_PARAM = "explicit";
     private static final String MISSING_PARAM = "missing";
     private static final String IMPLICIT_VALUE = IMPLICIT_PARAM + "Value";
@@ -71,12 +68,7 @@ public class RequestParamProducerTest {
         return Deployments
                 .createMockableBeanWebArchive(Deployments.exclude(ImplicitHttpServletObjectsProducer.class, RedirectBuilder.class, RedirectBuilderImpl.class))
                 .addClasses(RequestParamProducerTest.class, Suit.class)
-/*                .addPackages(
-                        true,
-                        Deployments.exclude(ImplicitHttpServletObjectsProducer.class, RedirectBuilder.class,
-                                RedirectBuilderImpl.class), TypedParamValue.class.getPackage())
-                .addPackage(ServletRequestContext.class.getPackage())
-                .addAsServiceProvider(Extension.class, ServletExtension.class)*/;
+;
     }
 
     @Inject
@@ -207,5 +199,5 @@ public class RequestParamProducerTest {
         when(req.getCookies()).thenReturn(cookies);
 
         return req;
-    }
+    }*/
 }

@@ -14,7 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.solder.servlet.test.common.event;
+package org.jboss.solder.servlet.test.weld.event;
+
+import java.net.URL;
 
 import javax.inject.Inject;
 import javax.servlet.FilterChain;
@@ -29,8 +31,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 
+import junit.framework.Assert;
+
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.solder.servlet.ServletRequestContext;
 import org.jboss.solder.servlet.WebApplication;
 import org.jboss.solder.servlet.beanManager.ServletContextAttributeProvider;
@@ -39,8 +45,10 @@ import org.jboss.solder.servlet.event.ServletEventBridgeFilter;
 import org.jboss.solder.servlet.event.ServletEventBridgeListener;
 import org.jboss.solder.servlet.event.ServletEventBridgeServlet;
 import org.jboss.solder.servlet.http.HttpServletRequestContext;
-import org.jboss.solder.servlet.test.common.event.ServletEventBridgeTestHelper.NoOpFilterChain;
+import org.jboss.solder.servlet.test.common.beanManager.ServletContextAttributeProviderServlet;
+import org.jboss.solder.servlet.test.weld.event.ServletEventBridgeTestHelper.NoOpFilterChain;
 import org.jboss.solder.servlet.test.common.util.Deployments;
+import org.jboss.solder.servlet.test.common.util.StreamReaderUtil;
 import org.jboss.shrinkwrap.api.Archive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,11 +61,13 @@ import static org.mockito.Mockito.when;
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
  */
 @RunWith(Arquillian.class)
+//@RunAsClient
 public class ServletEventBridgeTest {
     @Deployment
     public static Archive<?> createDeployment() {
         return Deployments
-                .createMockableBeanWebArchive()
+                .createBeanWebArchive()
+                // .addClasses(ShouldObserveServletContextServlet.class)
                 //.addPackage(WebApplication.class.getPackage())
                 //.addPackages(true, ServletEventBridgeListener.class.getPackage())
                 .addClasses(ServletEventBridgeTestHelper.class, ServletEventBridgeTest.class);
@@ -76,6 +86,9 @@ public class ServletEventBridgeTest {
 
     @Inject
     ServletEventBridgeTestHelper observer;
+    
+    /*@ArquillianResource
+    URL deploymentUrl;*/
 
     // @Before
     public void reset() {
@@ -84,6 +97,12 @@ public class ServletEventBridgeTest {
 
     @Test
     public void should_observe_servlet_context() throws Exception {
+        
+       /* String requestUrl = deploymentUrl + ShouldObserveServletContextServlet.URL_PATTERN.substring(1);
+        String body = StreamReaderUtil.readAllAndClose(new URL(requestUrl).openStream());
+        
+        Assert.assertEquals(ShouldObserveServletContextServlet.EXPECTED_RESPONSE, body);*/
+        
         reset();
         ServletContext ctx = mock(ServletContext.class);
         when(ctx.getServletContextName()).thenReturn("mock");
@@ -98,6 +117,8 @@ public class ServletEventBridgeTest {
         listener.contextDestroyed(new ServletContextEvent(ctx));
         observer.assertObservations("WebApplication", webapp, webapp, webapp);
         observer.assertObservations("ServletContext", ctx, ctx);
+        
+        
     }
 
     @Test

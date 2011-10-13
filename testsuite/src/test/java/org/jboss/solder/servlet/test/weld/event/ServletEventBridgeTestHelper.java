@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.solder.servlet.test.common.event;
+package org.jboss.solder.servlet.test.weld.event;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,6 +24,7 @@ import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
+import javax.inject.Inject;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -33,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jboss.solder.logging.Logger;
 import org.jboss.solder.servlet.ServletRequestContext;
 import org.jboss.solder.servlet.WebApplication;
 import org.jboss.solder.servlet.event.Destroyed;
@@ -52,7 +54,12 @@ import org.junit.Assert;
 public class ServletEventBridgeTestHelper {
     private Map<String, List<Object>> observations = new HashMap<String, List<Object>>();
 
+    @Inject Logger logger;
+    
     private void recordObservation(String id, Object observation) {
+        
+        logger.info("observing " + id + " " + observation.toString());
+        
         List<Object> observed = observations.get(id);
         if (observed == null) {
             observed = new ArrayList<Object>();
@@ -67,6 +74,8 @@ public class ServletEventBridgeTestHelper {
 
     public void reset() {
         observations.clear();
+        
+        logger.info("resetting obsevations");
     }
 
     public void assertObservations(String id, Object... observations) {

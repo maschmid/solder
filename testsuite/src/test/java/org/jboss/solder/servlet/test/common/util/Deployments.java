@@ -56,11 +56,6 @@ public class Deployments {
                         .importFrom(new File(SOLDER_LOGGING_JAR))
                         .as(JavaArchive.class)};
 
-    public static final Archive<?>[] MOCKITO = DependencyResolvers.use(MavenDependencyResolver.class)
-            .configureFrom("../settings.xml")
-            .loadReposFromPom("pom.xml").artifact("org.mockito:mockito-all").exclusion("*")
-            .resolveAs(GenericArchive.class).toArray(new Archive<?>[0]);
-
     public static JavaArchive createBeanArchive() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar").addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -70,6 +65,23 @@ public class Deployments {
              return ShrinkWrap.create(JavaArchive.class, archive.getName()).merge(archive, filter);
         }
         return archive;
+    }
+    
+    public static final Archive<?>[] MOCKITO = DependencyResolvers.use(MavenDependencyResolver.class)
+        .configureFrom("../settings.xml")
+        .loadReposFromPom("pom.xml").artifact("org.mockito:mockito-all").exclusion("*")
+        .resolveAs(GenericArchive.class).toArray(new Archive<?>[0]);
+    
+    public static WebArchive createMockableBeanWebArchive(Filter<ArchivePath> filter) {
+        return createBeanWebArchive(filter).addAsLibraries(MOCKITO);
+    }
+    
+    public static WebArchive createMockableBeanWebArchive() {
+        return createBeanWebArchive(null).addAsLibraries(MOCKITO);
+    }
+    
+    public static WebArchive createBeanWebArchive() {
+        return createBeanWebArchive(null);
     }
 
     public static WebArchive createBeanWebArchive(Filter<ArchivePath> filter) {
@@ -94,28 +106,5 @@ public class Deployments {
                                 .importFrom(new File(SOLDER_LOGGING_JAR))
                                 .as(JavaArchive.class), filter))
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
-
-    public static WebArchive createMockableBeanWebArchive(Filter<ArchivePath> filter) {
-        return createBeanWebArchive(filter).addAsLibraries(MOCKITO);
-    }
-
-    public static WebArchive createMockableBeanWebArchive() {
-        return createBeanWebArchive(null).addAsLibraries(MOCKITO);
-    }
-
-    public static Filter<ArchivePath> exclude(final Class<?>... classes) {
-        return new Filter<ArchivePath>() {
-            public boolean include(ArchivePath ap) {
-                String path = ap.get().replace('$', '=');
-                for (Class<?> c : classes) {
-                    if (path.matches("^/" + c.getName().replace('.', '/') + "(=[1-9])?.class$")) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-        };
     }
 }

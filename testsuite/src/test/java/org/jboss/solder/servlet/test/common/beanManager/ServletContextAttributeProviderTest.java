@@ -16,61 +16,72 @@
  */
 package org.jboss.solder.servlet.test.common.beanManager;
 
+import java.net.URL;
+
 import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 
+import junit.framework.Assert;
+
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.solder.servlet.ImplicitServletObjectsProducer;
 import org.jboss.solder.servlet.ServerInfo;
 import org.jboss.solder.servlet.beanManager.ServletContextAttributeProvider;
 import org.jboss.solder.servlet.event.ServletEventBridgeListener;
 import org.jboss.solder.servlet.http.HttpServletRequestContext;
 import org.jboss.solder.servlet.test.common.util.Deployments;
+import org.jboss.solder.servlet.test.common.util.StreamReaderUtil;
 import org.jboss.solder.beanManager.BeanManagerLocator;
 import org.jboss.solder.beanManager.BeanManagerProvider;
 import org.jboss.shrinkwrap.api.Archive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 /**
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
  */
 @RunWith(Arquillian.class)
+@RunAsClient
 public class ServletContextAttributeProviderTest {
-    @Deployment
+    @Deployment(testable = false)
     public static Archive<?> createDeployment() {
-        return Deployments.createMockableBeanWebArchive()
-                .addClasses(ServletContextAttributeProviderTest.class);
+        return Deployments.createBeanWebArchive()
+                .addClasses(ServletContextAttributeProviderTest.class, ServletContextAttributeProviderServlet.class);
                 //.addClasses(ServletContextAttributeProvider.class, HttpServletRequestContext.class)
                 //.addPackage(ImplicitServletObjectsProducer.class.getPackage())
                 //.addPackages(true, ServletEventBridgeListener.class.getPackage())
                 //.addAsServiceProvider(BeanManagerProvider.class, ServletContextAttributeProvider.class);
     }
+    
+    @ArquillianResource
+    URL deploymentUrl;
 
-    @Inject
+    /*@Inject
     BeanManager manager;
 
     @Inject
-    ServletEventBridgeListener listener;
+    ServletEventBridgeListener listener;*/
 
     // TODO this should be in a separate test
-    @Inject
+   /* @Inject
     @ServerInfo
-    Instance<String> serverInfoProvider;
+    Instance<String> serverInfoProvider;*/
 
     @Test
-    public void should_register_and_locate_bean_manager() {
-        String MOCK_SERVLET_CONTEXT = "Mock Servlet Context";
+    public void should_register_and_locate_bean_manager() throws Exception {
+        
+        String requestUrl = deploymentUrl + ServletContextAttributeProviderServlet.URL_PATTERN.substring(1);
+        String body = StreamReaderUtil.readAllAndClose(new URL(requestUrl).openStream());
+        
+        Assert.assertEquals(ServletContextAttributeProviderServlet.EXPECTED_RESPONSE, body);
+        
+        /*String MOCK_SERVLET_CONTEXT = "Mock Servlet Context";
 
         ServletContext ctx = mock(ServletContext.class);
         when(ctx.getServerInfo()).thenReturn(MOCK_SERVLET_CONTEXT);
@@ -82,6 +93,6 @@ public class ServletContextAttributeProviderTest {
         when(ctx.getAttribute(BeanManager.class.getName())).thenReturn(manager);
         BeanManagerLocator locator = new BeanManagerLocator();
         assertTrue(locator.isBeanManagerAvailable());
-        assertEquals(manager, locator.getBeanManager());
+        assertEquals(manager, locator.getBeanManager());*/
     }
 }

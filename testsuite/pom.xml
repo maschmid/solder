@@ -51,14 +51,13 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <scope>test</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
         </dependency>
     </dependencies>
 
@@ -132,6 +131,11 @@
                                 <arquillian.launch>weld-ee-embedded-1.1</arquillian.launch>
                                 <arquillian>weld-ee-embedded-1.1</arquillian>
                             </systemProperties>
+                            <excludes>
+                               <exclude>**/config/**</exclude>
+                               <exclude>**/exception/**</exclude>
+                               <exclude>**/solder/test/**</exclude>
+                            </excludes>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -164,6 +168,9 @@
                      <configuration>
                         <excludes>
                            <exclude>**/weld/**</exclude>
+                           <exclude>**/config/**</exclude>
+                           <exclude>**/exception/**</exclude>
+                           <exclude>**/solder/test/**</exclude>
                         </excludes>
                      </configuration>
                   </plugin>

@@ -66,8 +66,6 @@ import org.jboss.solder.servlet.http.HttpServletRequestContext;
 import org.jboss.solder.servlet.http.ContextPath;
 
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * 
@@ -127,7 +125,7 @@ public class MockHttpServletObjectsProducer extends ImplicitHttpServletObjectsPr
         return getHttpServletRequest().getContextPath();
     }*/
 
-
+/*
     @Override
     @Produces
 //    @Specializes
@@ -160,5 +158,5 @@ public class MockHttpServletObjectsProducer extends ImplicitHttpServletObjectsPr
         when(req.getCookies()).thenReturn(cookies);
 
         return req;
-    }
+    }*/
 }
