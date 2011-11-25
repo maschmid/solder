@@ -41,8 +41,8 @@
       </dependency>
       
       <dependency>
-         <groupId>org.jboss.solder</groupId>
-         <artifactId>solder-logging</artifactId>
+         <groupId>org.jboss.logging</groupId>
+         <artifactId>jboss-logging</artifactId>
       </dependency>
 
       <dependency>

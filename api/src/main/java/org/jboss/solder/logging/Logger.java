@@ -30,7 +30,7 @@ public class Logger implements Serializable {
 
     private static final long serialVersionUID = 2699068144024070551L;
 
-    private final org.jboss.solder.logging.internal.Logger delegate;
+    private final org.jboss.logging.Logger delegate;
 
     /**
      * Levels used by this logging API.
@@ -40,7 +40,7 @@ public class Logger implements Serializable {
     }
 
     Logger(String name) {
-        this.delegate = org.jboss.solder.logging.internal.Logger.getLogger(name);
+        this.delegate = org.jboss.logging.Logger.getLogger(name);
     }
 
     /**
@@ -68,7 +68,7 @@ public class Logger implements Serializable {
      * @return {@code true} if messages logged at {@link Level#TRACE} may be accepted, {@code false} otherwise
      */
     public boolean isTraceEnabled() {
-        return delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE);
+        return delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE);
     }
 
     /**
@@ -130,7 +130,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void tracev(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(format, param1);
         }
     }
@@ -143,7 +143,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void tracev(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(format, param1, param2);
         }
     }
@@ -157,7 +157,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void tracev(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(format, param1, param2, param3);
         }
     }
@@ -181,7 +181,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void tracev(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(t, format, param1);
         }
     }
@@ -195,7 +195,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void tracev(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(t, format, param1, param2);
         }
     }
@@ -210,7 +210,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void tracev(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(t, format, param1, param2, param3);
         }
     }
@@ -232,7 +232,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void tracef(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(format, param1);
         }
     }
@@ -245,7 +245,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void tracef(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(format, param1, param2);
         }
     }
@@ -259,7 +259,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void tracef(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(format, param1, param2, param3);
         }
     }
@@ -283,7 +283,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void tracef(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(t, format, param1);
         }
     }
@@ -297,7 +297,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void tracef(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(t, format, param1, param2);
         }
     }
@@ -312,7 +312,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void tracef(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.TRACE)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.TRACE)) {
             delegate.tracev(t, format, param1, param2, param3);
         }
     }
@@ -323,7 +323,7 @@ public class Logger implements Serializable {
      * @return {@code true} if messages logged at {@link Level#DEBUG} may be accepted, {@code false} otherwise
      */
     public boolean isDebugEnabled() {
-        return delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG);
+        return delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG);
     }
 
     /**
@@ -385,7 +385,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void debugv(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugv(format, param1);
         }
     }
@@ -398,7 +398,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void debugv(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugv(format, param1, param2);
         }
     }
@@ -412,7 +412,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void debugv(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugv(format, param1, param2, param3);
         }
     }
@@ -436,7 +436,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void debugv(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugv(t, format, param1);
         }
     }
@@ -450,7 +450,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void debugv(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugv(t, format, param1, param2);
         }
     }
@@ -465,7 +465,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void debugv(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugv(t, format, param1, param2, param3);
         }
     }
@@ -487,7 +487,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void debugf(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugf(format, param1);
         }
     }
@@ -500,7 +500,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void debugf(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugf(format, param1, param2);
         }
     }
@@ -514,7 +514,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void debugf(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugf(format, param1, param2, param3);
         }
     }
@@ -538,7 +538,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void debugf(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugf(t, format, param1);
         }
     }
@@ -552,7 +552,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void debugf(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugf(t, format, param1, param2);
         }
     }
@@ -567,7 +567,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void debugf(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.DEBUG)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.DEBUG)) {
             delegate.debugf(t, format, param1, param2, param3);
         }
     }
@@ -578,7 +578,7 @@ public class Logger implements Serializable {
      * @return {@code true} if messages logged at {@link Level#INFO} may be accepted, {@code false} otherwise
      */
     public boolean isInfoEnabled() {
-        return delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO);
+        return delegate.isEnabled(org.jboss.logging.Logger.Level.INFO);
     }
 
     /**
@@ -640,7 +640,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void infov(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infov(format, param1);
         }
     }
@@ -653,7 +653,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void infov(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infov(format, param1, param2);
         }
     }
@@ -667,7 +667,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void infov(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infov(format, param1, param2, param3);
         }
     }
@@ -691,7 +691,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void infov(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infov(t, format, param1);
         }
     }
@@ -705,7 +705,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void infov(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infov(t, format, param1, param2);
         }
     }
@@ -720,7 +720,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void infov(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infov(t, format, param1, param2, param3);
         }
     }
@@ -742,7 +742,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void infof(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infof(format, param1);
         }
     }
@@ -755,7 +755,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void infof(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infof(format, param1, param2);
         }
     }
@@ -769,7 +769,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void infof(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infof(format, param1, param2, param3);
         }
     }
@@ -793,7 +793,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void infof(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infof(t, format, param1);
         }
     }
@@ -807,7 +807,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void infof(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infof(t, format, param1, param2);
         }
     }
@@ -822,7 +822,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void infof(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.INFO)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.INFO)) {
             delegate.infof(t, format, param1, param2, param3);
         }
     }
@@ -886,7 +886,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void warnv(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnv(format, param1);
         }
     }
@@ -899,7 +899,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void warnv(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnv(format, param1, param2);
         }
     }
@@ -913,7 +913,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void warnv(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnv(format, param1, param2, param3);
         }
     }
@@ -937,7 +937,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void warnv(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnv(t, format, param1);
         }
     }
@@ -951,7 +951,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void warnv(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnv(t, format, param1, param2);
         }
     }
@@ -966,7 +966,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void warnv(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnv(t, format, param1, param2, param3);
         }
     }
@@ -988,7 +988,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void warnf(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnf(format, param1);
         }
     }
@@ -1001,7 +1001,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void warnf(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnf(format, param1, param2);
         }
     }
@@ -1015,7 +1015,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void warnf(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnf(format, param1, param2, param3);
         }
     }
@@ -1039,7 +1039,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void warnf(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnf(t, format, param1);
         }
     }
@@ -1053,7 +1053,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void warnf(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnf(t, format, param1, param2);
         }
     }
@@ -1068,7 +1068,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void warnf(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.WARN)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.WARN)) {
             delegate.warnf(t, format, param1, param2, param3);
         }
     }
@@ -1132,7 +1132,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void errorv(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorv(format, param1);
         }
     }
@@ -1145,7 +1145,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void errorv(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorv(format, param1, param2);
         }
     }
@@ -1159,7 +1159,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void errorv(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorv(format, param1, param2, param3);
         }
     }
@@ -1183,7 +1183,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void errorv(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorv(t, format, param1);
         }
     }
@@ -1197,7 +1197,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void errorv(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorv(t, format, param1, param2);
         }
     }
@@ -1212,7 +1212,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void errorv(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorv(t, format, param1, param2, param3);
         }
     }
@@ -1234,7 +1234,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void errorf(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorf(format, param1);
         }
     }
@@ -1247,7 +1247,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void errorf(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorf(format, param1, param2);
         }
     }
@@ -1261,7 +1261,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void errorf(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorf(format, param1, param2, param3);
         }
     }
@@ -1285,7 +1285,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void errorf(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorf(t, format, param1);
         }
     }
@@ -1299,7 +1299,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void errorf(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorf(t, format, param1, param2);
         }
     }
@@ -1314,7 +1314,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void errorf(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.ERROR)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.ERROR)) {
             delegate.errorf(t, format, param1, param2, param3);
         }
     }
@@ -1378,7 +1378,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void fatalv(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalv(format, param1);
         }
     }
@@ -1391,7 +1391,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void fatalv(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalv(format, param1, param2);
         }
     }
@@ -1405,7 +1405,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void fatalv(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalv(format, param1, param2, param3);
         }
     }
@@ -1429,7 +1429,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void fatalv(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalv(t, format, param1);
         }
     }
@@ -1443,7 +1443,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void fatalv(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalv(t, format, param1, param2);
         }
     }
@@ -1458,7 +1458,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void fatalv(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalv(t, format, param1, param2, param3);
         }
     }
@@ -1480,7 +1480,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void fatalf(String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalf(format, param1);
         }
     }
@@ -1493,7 +1493,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void fatalf(String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalf(format, param1, param2);
         }
     }
@@ -1507,7 +1507,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void fatalf(String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalf(format, param1, param2, param3);
         }
     }
@@ -1531,7 +1531,7 @@ public class Logger implements Serializable {
      * @param param1 the sole parameter
      */
     public void fatalf(Throwable t, String format, Object param1) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalf(t, format, param1);
         }
     }
@@ -1545,7 +1545,7 @@ public class Logger implements Serializable {
      * @param param2 the second parameter
      */
     public void fatalf(Throwable t, String format, Object param1, Object param2) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalf(t, format, param1, param2);
         }
     }
@@ -1560,7 +1560,7 @@ public class Logger implements Serializable {
      * @param param3 the third parameter
      */
     public void fatalf(Throwable t, String format, Object param1, Object param2, Object param3) {
-        if (delegate.isEnabled(org.jboss.solder.logging.internal.Logger.Level.FATAL)) {
+        if (delegate.isEnabled(org.jboss.logging.Logger.Level.FATAL)) {
             delegate.fatalf(t, format, param1, param2, param3);
         }
     }
@@ -2096,21 +2096,21 @@ public class Logger implements Serializable {
         return build.toString();
     }
 
-    private static org.jboss.solder.logging.internal.Logger.Level translate(final Level level) {
+    private static org.jboss.logging.Logger.Level translate(final Level level) {
         if (level != null)
             switch (level) {
                 case FATAL:
-                    return org.jboss.solder.logging.internal.Logger.Level.FATAL;
+                    return org.jboss.logging.Logger.Level.FATAL;
                 case ERROR:
-                    return org.jboss.solder.logging.internal.Logger.Level.ERROR;
+                    return org.jboss.logging.Logger.Level.ERROR;
                 case WARN:
-                    return org.jboss.solder.logging.internal.Logger.Level.WARN;
+                    return org.jboss.logging.Logger.Level.WARN;
                 case INFO:
-                    return org.jboss.solder.logging.internal.Logger.Level.INFO;
+                    return org.jboss.logging.Logger.Level.INFO;
                 case DEBUG:
-                    return org.jboss.solder.logging.internal.Logger.Level.DEBUG;
+                    return org.jboss.logging.Logger.Level.DEBUG;
                 case TRACE:
-                    return org.jboss.solder.logging.internal.Logger.Level.TRACE;
+                    return org.jboss.logging.Logger.Level.TRACE;
             }
         return null;
     }

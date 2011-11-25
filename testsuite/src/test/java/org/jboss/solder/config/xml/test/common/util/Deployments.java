@@ -28,7 +28,6 @@ public class Deployments {
 
     private static final String SOLDER_API_JAR = "../api/target/solder-api.jar";
     private static final String SOLDER_IMPL_JAR = "../impl/target/solder-impl.jar";
-    private static final String SOLDER_LOGGING_JAR = "../logging/target/solder-logging.jar";
 
     public static WebArchive baseDeployment(Class<?> klass) {
         return ShrinkWrap.create(WebArchive.class, "test.war")
@@ -40,10 +39,6 @@ public class Deployments {
                 ShrinkWrap.create(
                     ZipImporter.class, "solder-impl.jar")
                         .importFrom(new File(SOLDER_IMPL_JAR))
-                        .as(JavaArchive.class),
-                ShrinkWrap.create(
-                    ZipImporter.class, "solder-logging.jar")
-                        .importFrom(new File(SOLDER_LOGGING_JAR))
                         .as(JavaArchive.class))
                 .addClass(AbstractXMLTest.class)
                 .addClass(klass);

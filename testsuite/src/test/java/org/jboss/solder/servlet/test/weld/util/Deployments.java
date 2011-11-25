@@ -37,7 +37,6 @@ public class Deployments {
 
     private static final String SOLDER_API_JAR = "../api/target/solder-api.jar";
     private static final String SOLDER_IMPL_JAR = "../impl/target/solder-impl.jar";
-    private static final String SOLDER_LOGGING_JAR = "../logging/target/solder-logging.jar";
 
     public static final Archive<?>[] SEAM_SOLDER = {
                 ShrinkWrap.create(
@@ -47,10 +46,6 @@ public class Deployments {
                 ShrinkWrap.create(
                     ZipImporter.class, "solder-impl.jar")
                         .importFrom(new File(SOLDER_IMPL_JAR))
-                        .as(JavaArchive.class),
-                ShrinkWrap.create(
-                    ZipImporter.class, "solder-logging.jar")
-                        .importFrom(new File(SOLDER_LOGGING_JAR))
                         .as(JavaArchive.class)};
 
     public static JavaArchive createBeanArchive() {
@@ -79,11 +74,6 @@ public class Deployments {
                         ShrinkWrap.create(
                             ZipImporter.class, "solder-impl.jar")
                                 .importFrom(new File(SOLDER_IMPL_JAR))
-                                .as(JavaArchive.class), filter),
-                    filteredArchive(
-                        ShrinkWrap.create(
-                            ZipImporter.class, "solder-logging.jar")
-                                .importFrom(new File(SOLDER_LOGGING_JAR))
                                 .as(JavaArchive.class), filter))
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }

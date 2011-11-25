@@ -43,7 +43,6 @@
    </licenses>
 
    <modules>
-      <module>logging</module>
       <module>api</module>
       <module>tooling</module>
       <module>impl</module>
@@ -68,9 +67,10 @@
          </dependency>
 
          <dependency>
-            <groupId>org.jboss.solder</groupId>
-            <artifactId>solder-logging</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.1.0.Beta3</version>
+            <optional>true</optional>
          </dependency>
 
          <dependency>

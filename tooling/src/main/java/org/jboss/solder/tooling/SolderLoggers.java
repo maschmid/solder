@@ -19,8 +19,8 @@ package org.jboss.solder.tooling;
 
 import org.jboss.logging.generator.Loggers;
 import org.jboss.solder.logging.Logger;
-import org.jboss.solder.logging.internal.BasicLogger;
-import org.jboss.solder.logging.internal.DelegatingBasicLogger;
+import org.jboss.logging.BasicLogger;
+import org.jboss.logging.DelegatingBasicLogger;
 
 /**
  * @author James R. Perkins (jrp) - 20.Feb.2011

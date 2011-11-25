@@ -19,11 +19,6 @@
    </properties>
 
    <dependencies>
-      <dependency>
-         <groupId>org.jboss.solder</groupId>
-         <artifactId>solder-logging</artifactId>
-         <optional>true</optional>
-      </dependency>
 
       <dependency>
          <groupId>org.jboss.solder</groupId>
