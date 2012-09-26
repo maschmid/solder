@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.jboss.solder.core.Requires;
+import org.jboss.solder.servlet.Solder;
 import org.jboss.solder.servlet.event.ImplicitServletObjectsHolder;
 
 /**
@@ -50,6 +51,7 @@ public class ImplicitHttpServletObjectsProducer implements Serializable {
 
     @Produces
     @RequestScoped
+    @Solder
     protected HttpSession getHttpSession() {
         if (holder.getHttpSession() == null) {
             throw new IllegalStateException("Attempted to inject an HttpSession before it has been initialized.");
@@ -61,6 +63,7 @@ public class ImplicitHttpServletObjectsProducer implements Serializable {
     @Produces
     @Typed(HttpServletRequestContext.class)
     @RequestScoped
+    @Solder
     protected HttpServletRequestContext getHttpServletRequestContext() {
         return holder.getHttpServletRequestContext();
     }
@@ -68,6 +71,7 @@ public class ImplicitHttpServletObjectsProducer implements Serializable {
     @Produces
     @Typed(HttpServletRequest.class)
     @RequestScoped
+    @Solder
     protected HttpServletRequest getHttpServletRequest() {
         if (holder.getHttpServletRequest() == null) {
             throw new IllegalStateException("Attempted to inject an HttpServletRequest before it has been initialized.");
@@ -79,6 +83,7 @@ public class ImplicitHttpServletObjectsProducer implements Serializable {
     @Produces
     @Typed(HttpServletResponse.class)
     @RequestScoped
+    @Solder
     protected HttpServletResponse getHttpServletResponse() {
         if (holder.getHttpServletResponse() == null) {
             throw new IllegalStateException("Attempted to inject an HttpServletResponse before it has been initialized.");
@@ -89,6 +94,7 @@ public class ImplicitHttpServletObjectsProducer implements Serializable {
 
     @Produces
     @RequestScoped
+    @Solder
     protected List<Cookie> getCookies() {
         return Arrays.asList(getHttpServletRequest().getCookies());
     }

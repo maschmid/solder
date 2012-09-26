@@ -5,6 +5,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.jboss.solder.core.Requires;
+import org.jboss.solder.servlet.Solder;
 import org.jboss.solder.servlet.event.Initialized;
 
 /**
@@ -16,7 +17,7 @@ public class CharacterEncodingConfig {
 
     private boolean override = false;
 
-    protected void apply(@Observes @Initialized ServletResponse response, ServletRequest request) throws Exception {
+    protected void apply(@Observes @Initialized ServletResponse response, @Solder ServletRequest request) throws Exception {
         if (encoding != null && (override || request.getCharacterEncoding() == null)) {
             request.setCharacterEncoding(encoding);
             if (override) {

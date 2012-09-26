@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.solder.core.Requires;
+import org.jboss.solder.servlet.Solder;
 
 /**
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
@@ -38,9 +39,11 @@ import org.jboss.solder.core.Requires;
 @Requires("javax.servlet.Servlet")
 public class RedirectBuilderImpl implements RedirectBuilder {
     @Inject
+    @Solder
     private HttpServletRequest request;
 
     @Inject
+    @Solder
     private HttpServletResponse response;
 
     private String path = null;

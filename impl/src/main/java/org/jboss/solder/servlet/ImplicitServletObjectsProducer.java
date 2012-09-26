@@ -41,24 +41,28 @@ public class ImplicitServletObjectsProducer {
 
     @Produces
     @ApplicationScoped
+    @Solder
     protected ServletContext getServletContext() {
         return holder.getServletContext();
     }
 
     @Produces
     @RequestScoped
+    @Solder
     protected ServletRequestContext getServletRequestContext() {
         return holder.getServletRequestContext();
     }
 
     @Produces
     @RequestScoped
+    @Solder
     protected ServletRequest getServletRequest() {
         return holder.getServletRequest();
     }
 
     @Produces
     @RequestScoped
+    @Solder
     protected ServletResponse getServletResponse() throws IllegalStateException {
         if (holder.getServletResponse() == null) {
             throw new IllegalStateException("Attempted to inject a ServletResponse before it has been initialized.");
@@ -69,6 +73,7 @@ public class ImplicitServletObjectsProducer {
 
     @Produces
     @ServerInfo
+    @Solder
     protected String getServerInfo() {
         return getServletContext().getServerInfo();
     }

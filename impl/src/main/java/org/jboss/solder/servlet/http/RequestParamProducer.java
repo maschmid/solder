@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.jboss.solder.core.Requires;
 import org.jboss.solder.reflection.PrimitiveTypes;
 import org.jboss.solder.servlet.ServletExtension;
+import org.jboss.solder.servlet.Solder;
 
 /**
  * A producer for a String bean qualified &#064;{@link RequestParam}.
@@ -53,6 +54,7 @@ import org.jboss.solder.servlet.ServletExtension;
 @Requires("javax.servlet.Servlet")
 public class RequestParamProducer {
     @Inject
+    @Solder
     private HttpServletRequest request;
 
     @Produces

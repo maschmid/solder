@@ -63,6 +63,7 @@
                     <systemProperties>
                         <arquillian.launch>${arquillian}</arquillian.launch>
                         <arquillian>${arquillian}</arquillian>
+                        <foobar>${argLine}</foobar>
                     </systemProperties>
                 </configuration>
 
