@@ -39,7 +39,7 @@ public class CallingHandlersTest {
     @Deployment(name = "CallingHandlersTest")
     public static Archive<?> createTestArchive() {
         return BaseWebArchive.createBase("callingHandlers")
-                .addClasses(CalledExceptionHandler.class, ExceptionHandledInterceptor.class);
+                .addClasses(CalledExceptionHandler.class);
     }
 
     @Inject
