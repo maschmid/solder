@@ -94,6 +94,10 @@ class GenericObserverMethod<T, X> extends ForwardingObserverMethod<T> {
 
     }
 
+    public void notify(final T event, java.util.Set s) {
+        notify(event);
+    }
+
     private CreationalContext<?> createCreationalContext(Bean<?> declaringBean) {
         if (getReception().equals(Reception.ALWAYS)) {
             return beanManager.createCreationalContext(declaringBean);
